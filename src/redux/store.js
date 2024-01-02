@@ -1,6 +1,4 @@
 import { createStore } from "redux";
-import bookingReducer from "./flightBooking/bookingReducer";
-
-const store = createStore(bookingReducer);
-
+import rootReducer from "./rootReducer";
+const store = createStore(rootReducer);
 export default store;
