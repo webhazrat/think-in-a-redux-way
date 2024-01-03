@@ -2,6 +2,7 @@ const { createStore, applyMiddleware } = require("redux");
 const { todosMiddleware, fetchAsyncMiddleware } = require("./middlewares");
 const { fetchPosts } = require("./function");
 const { TODOS_ADD, TODOS_LOADED, POSTS_LOADED } = require("./constans");
+const { thunk } = require("redux-thunk");
 
 const initialState = {
   todos: [],
@@ -35,25 +36,29 @@ const todosReducer = (state = initialState, action) => {
       return state;
   }
 };
+// with custom middlewares
 
-const store = createStore(
-  todosReducer,
-  applyMiddleware(todosMiddleware, fetchAsyncMiddleware)
-);
+// const store = createStore(
+//   todosReducer,
+//   applyMiddleware(todosMiddleware, fetchAsyncMiddleware)
+// );
+
+// with redux thunk
+const store = createStore(todosReducer, applyMiddleware(thunk));
 
 store.subscribe(() => {
   console.log(store.getState());
 });
 
-store.dispatch({
-  type: TODOS_ADD,
-  payload: {
-    title: "New todo added",
-  },
-});
+// store.dispatch({
+//   type: TODOS_ADD,
+//   payload: {
+//     title: "New todo added",
+//   },
+// });
 
-store.dispatch({
-  type: "TODOS_REQUEST",
-});
+// store.dispatch({
+//   type: "TODOS_REQUEST",
+// });
 
 store.dispatch(fetchPosts);

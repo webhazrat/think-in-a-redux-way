@@ -19,7 +19,7 @@ const todosMiddleware = (store) => (next) => async (action) => {
 
 const fetchAsyncMiddleware = (store) => (next) => (action) => {
   if (typeof action === "function") {
-    action(store.dispatch);
+    action(store.dispatch, store.getState);
     return;
   }
   return next(action);

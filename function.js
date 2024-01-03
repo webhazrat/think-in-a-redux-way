@@ -1,6 +1,6 @@
 const { POSTS_LOADED } = require("./constans");
 
-const fetchPosts = async (dispatch) => {
+const fetchPosts = async (dispatch, getState) => {
   const response = await fetch(
     "https://jsonplaceholder.typicode.com/posts?_limit=10"
   );
