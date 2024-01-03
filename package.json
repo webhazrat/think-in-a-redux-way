@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-fetch": "^3.3.2",
     "redux": "^5.0.1"
   }
 }

@@ -1,11 +1,11 @@
 const { createStore, applyMiddleware } = require("redux");
-const { todosMiddleware } = require("./middlewares");
-
-const TODOS_ADD = "todos/todoAdd";
-const TODOS_LOADED = "todos/todosLoaded";
+const { todosMiddleware, fetchAsyncMiddleware } = require("./middlewares");
+const { fetchPosts } = require("./function");
+const { TODOS_ADD, TODOS_LOADED, POSTS_LOADED } = require("./constans");
 
 const initialState = {
   todos: [],
+  posts: [],
 };
 
 const todosReducer = (state = initialState, action) => {
@@ -26,12 +26,20 @@ const todosReducer = (state = initialState, action) => {
         ...state,
         todos: action.payload.todos,
       };
+    case POSTS_LOADED:
+      return {
+        ...state,
+        posts: action.payload.posts,
+      };
     default:
       return state;
   }
 };
 
-const store = createStore(todosReducer, applyMiddleware(todosMiddleware));
+const store = createStore(
+  todosReducer,
+  applyMiddleware(todosMiddleware, fetchAsyncMiddleware)
+);
 
 store.subscribe(() => {
   console.log(store.getState());
@@ -48,6 +56,4 @@ store.dispatch({
   type: "TODOS_REQUEST",
 });
 
-module.exports = {
-  TODOS_LOADED,
-};
+store.dispatch(fetchPosts);
