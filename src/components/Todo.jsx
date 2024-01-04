@@ -1,28 +1,30 @@
 import { useDispatch } from "react-redux";
-import { addColor, remove, toggleCompleted } from "../redux/todos/actions";
+import updateStatus from "../redux/todos/thunk/updateStatus";
+import updateColor from "../redux/todos/thunk/updateColor";
+import deleteTodo from "../redux/todos/thunk/deleteTodo";
 
 export default function Todo({ todo }) {
   const dispatch = useDispatch();
 
   // complete the todo
-  const handleToggleCompleted = (id) => {
-    dispatch(toggleCompleted(id));
+  const handleToggleCompleted = (todoId) => {
+    dispatch(updateStatus(todoId, todo.completed));
   };
 
   // todo priority change
-  const handleAddColor = (id, color) => {
-    dispatch(addColor(id, color));
+  const handleAddColor = (todoId, color) => {
+    dispatch(updateColor(todoId, color));
   };
 
   // todo remove
-  const handleRemove = (id) => {
-    dispatch(remove(id));
+  const handleRemove = (todoId) => {
+    dispatch(deleteTodo(todoId));
   };
   return (
     <div className="flex justify-start items-center p-2 hover:bg-gray-100 hover:transition-all space-x-4 border-b border-gray-400/20 last:border-0">
       <div
-        className={`rounded-full bg-white border-2 border-gray-400 w-5 h-5 flex flex-shrink-0 justify-center items-center mr-2 ${
-          todo.completed && "border-green-500 focus-within:border-green-500"
+        className={`relative rounded-full bg-white border-2 border-gray-400 w-5 h-5 flex flex-shrink-0 justify-center items-center mr-2 ${
+          todo.completed && "!border-green-500 focus-within:border-green-500"
         }`}
       >
         <input

@@ -3,6 +3,7 @@ import {
   ADD_COLOR,
   CLEAR_COMPLETED,
   COMPLETED_ALL,
+  LOADED,
   REMOVE,
   TOGGLE_COMPLETED,
 } from "./actionType";
@@ -20,8 +21,11 @@ const reducer = (state = initialState, action) => {
         {
           id: nextId(state),
           title: action.payload.title,
+          completed: false,
         },
       ];
+    case LOADED:
+      return [...action.payload.todos];
     case COMPLETED_ALL:
       return state.map((todo) => {
         return {

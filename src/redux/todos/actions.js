@@ -3,6 +3,7 @@ import {
   ADD_COLOR,
   CLEAR_COMPLETED,
   COMPLETED_ALL,
+  LOADED,
   REMOVE,
   TOGGLE_COMPLETED,
 } from "./actionType";
@@ -13,6 +14,16 @@ export const add = (title) => {
     type: ADD,
     payload: {
       title,
+    },
+  };
+};
+
+// action for loaded todos
+export const loaded = (todos) => {
+  return {
+    type: LOADED,
+    payload: {
+      todos,
     },
   };
 };

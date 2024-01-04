@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { add, clearCompleted, completedAll } from "../redux/todos/actions";
+import { clearCompleted, completedAll } from "../redux/todos/actions";
+import addTodo from "../redux/todos/thunk/addTodo";
 
 export default function TodoAddForm() {
   const [title, setTitle] = useState("");
@@ -9,7 +10,7 @@ export default function TodoAddForm() {
   // todo submit
   const handleAdd = (e) => {
     e.preventDefault();
-    dispatch(add(title));
+    dispatch(addTodo(title));
     setTitle("");
   };
 
