@@ -1,23 +1,23 @@
 import "./App.css";
-import FilterTodo from "./components/FilterTodo";
-import Header from "./components/Header";
-import TodoAddForm from "./components/TodoAddForm";
-import TodoList from "./components/TodoList";
+import BookFilter from "./components/BookFilter";
+import BookForm from "./components/BookForm";
+import BookList from "./components/BookList";
+import HeaderNavigation from "./components/HeaderNavigation";
 
 function App() {
   return (
     <>
-      <div className="grid place-items-center bg-blue-100 h-screen px-6 font-sans">
-        <Header />
+      <HeaderNavigation />
 
-        <div className="w-full max-w-3xl shadow-lg rounded-lg p-6 bg-white">
-          <TodoAddForm />
-          <hr className="mt-4" />
-          <TodoList />
-          <hr className="mt-4" />
-          <FilterTodo />
+      <main className="py-12 2xl:px-6">
+        <div className="container grid xl:grid-cols-[auto_350px] 2xl:grid-cols-[auto_400px] gap-4 2xl:gap-8">
+          <div className="order-2 xl:-order-1">
+            <BookFilter />
+            <BookList />
+          </div>
+          <BookForm />
         </div>
-      </div>
+      </main>
     </>
   );
 }

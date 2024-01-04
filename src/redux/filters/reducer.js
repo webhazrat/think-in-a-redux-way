@@ -1,29 +1,24 @@
-import { COLORS, STATUS } from "./actionType";
-import initialState from "./initialState";
+import { FILTER_SEARCH, FILTER_STATUS } from "./actionTypes";
 
-const reducer = (state = initialState, action) => {
+const initialState = {
+  status: "All",
+  search: "",
+};
+
+const filtersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case STATUS:
+    case FILTER_STATUS:
       return {
         ...state,
         status: action.payload.status,
       };
-    case COLORS:
-      if (state.colors.includes(action.payload.color)) {
-        return {
-          ...state,
-          colors: state.colors.filter(
-            (color) => color !== action.payload.color
-          ),
-        };
-      }
+    case FILTER_SEARCH:
       return {
         ...state,
-        colors: [...state.colors, action.payload.color],
+        search: action.payload.search,
       };
     default:
       return state;
   }
 };
-
-export default reducer;
+export default filtersReducer;

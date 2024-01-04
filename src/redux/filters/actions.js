@@ -1,21 +1,21 @@
-import { COLORS, STATUS } from "./actionType";
+import { FILTER_SEARCH, FILTER_STATUS } from "./actionTypes";
 
-// action for status wise filter
-export const statusChange = (status) => {
+// action for status filter
+export const filterStatus = (status) => {
   return {
-    type: STATUS,
+    type: FILTER_STATUS,
     payload: {
       status,
     },
   };
 };
 
-// action for colors wise filter
-export const colorsChange = (color) => {
+// action for search filter
+export const filterSearch = (search) => {
   return {
-    type: COLORS,
+    type: FILTER_SEARCH,
     payload: {
-      color,
+      search,
     },
   };
 };
