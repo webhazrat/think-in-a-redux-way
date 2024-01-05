@@ -1,5 +1,5 @@
 {
-  "name": "asynchronous-action-in-redux",
+  "name": "think-in-a-redux-way",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "redux": "^5.0.1",
-    "redux-thunk": "^3.1.0"
+    "@reduxjs/toolkit": "^2.0.1",
+    "redux-logger": "^3.0.6"
   }
 }
