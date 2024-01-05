@@ -1,18 +1,14 @@
 const { configureStore } = require("@reduxjs/toolkit");
-const counterReducer = require("./features/counter/counterSlice");
-const dynamicCounterReducer = require("./features/dynamicCounter/dynamicCounterSlice");
-const postsReducer = require("./features/posts/postsSlice");
 const { createLogger } = require("redux-logger");
+const videoReducer = require("./slices/videoSlice");
 
 const logger = createLogger();
 
 const store = configureStore({
   reducer: {
-    counter: counterReducer,
-    dynamicCounter: dynamicCounterReducer,
-    posts: postsReducer,
+    video: videoReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  middleware: (getDefaultMiddlewares) => getDefaultMiddlewares().concat(logger),
 });
 
 module.exports = store;
