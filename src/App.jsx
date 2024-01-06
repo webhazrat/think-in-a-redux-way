@@ -1,9 +1,8 @@
 import "./App.css";
-import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Home from "./pages/Home";
-import Video from "./pages/Video";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Blog from "./pages/Blog";
 
 function App() {
   return (
@@ -11,9 +10,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/video/:videoId" element={<Video />} />
+        <Route path="/blog/:blogId" element={<Blog />} />
       </Routes>
-      <Footer />
     </Router>
   );
 }

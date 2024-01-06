@@ -1,26 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-  tags: [],
-  search: "",
+  sorted: "",
+  filtered: "All",
 };
 
 const filtersSlice = createSlice({
   name: "filters",
   initialState,
   reducers: {
-    tagsToggle: (state, action) => {
-      if (state.tags.includes(action.payload)) {
-        const index = state.tags.indexOf(action.payload);
-        state.tags.splice(index, 1);
-      } else {
-        state.tags.push(action.payload);
-      }
+    sortedBlog: (state, action) => {
+      state.sorted = action.payload;
     },
-    searched: (state, action) => {
-      state.search = action.payload;
+    filteredBlog: (state, action) => {
+      state.filtered = action.payload;
     },
   },
 });
 
 export default filtersSlice.reducer;
-export const { tagsToggle, searched } = filtersSlice.actions;
+export const { sortedBlog, filteredBlog } = filtersSlice.actions;

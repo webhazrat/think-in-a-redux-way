@@ -1,13 +1,13 @@
-import Pagination from "../components/Pagination";
-import Tags from "../components/Tags";
-import Videos from "../components/Videos";
+import Blogs from "../components/Blogs";
+import Sidebar from "../components/Sidebar";
 
 export default function Home() {
   return (
     <>
-      <Tags />
-      <Videos />
-      <Pagination />
+      <section className="wrapper">
+        <Sidebar />
+        <Blogs />
+      </section>
     </>
   );
 }
