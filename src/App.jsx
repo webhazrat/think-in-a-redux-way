@@ -1,18 +1,23 @@
 import "./App.css";
+import CalculateTransaction from "./components/CalculateTransaction";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Blog from "./pages/Blog";
+import TransactionForm from "./components/TransactionForm";
+import Transactions from "./components/Transactions";
 
 function App() {
   return (
-    <Router>
+    <div className="App">
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blog/:blogId" element={<Blog />} />
-      </Routes>
-    </Router>
+      <div className="main">
+        <div className="container">
+          <CalculateTransaction />
+          <TransactionForm />
+          <Transactions />
+        </div>
+      </div>
+      <Footer />
+    </div>
   );
 }
 

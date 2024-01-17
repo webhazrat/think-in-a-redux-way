@@ -1,0 +1,10 @@
+{
+  "transactions": [
+    {
+      "name": "Earn from freelancing",
+      "type": "income",
+      "amount": "100000",
+      "id": "5321"
+    }
+  ]
+}
