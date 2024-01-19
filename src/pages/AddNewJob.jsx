@@ -18,17 +18,14 @@ export default function AddNewJob() {
   const [data, setData] = useState(initialState);
 
   const handleChange = (e) => {
-    setData((prev) => ({
-      ...prev,
+    setData({
+      ...data,
       [e.target.name]: e.target.value,
-    }));
+    });
   };
 
   const reset = () => {
-    setData((prev) => ({
-      ...prev,
-      ...initialState,
-    }));
+    setData(initialState);
   };
 
   const handleSubmit = (e) => {

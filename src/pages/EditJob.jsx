@@ -23,20 +23,19 @@ export default function EditJob() {
   }, [id, dispatch]);
 
   useEffect(() => {
-    setData((prev) => ({
-      ...prev,
+    setData({
       title: job?.title || "",
       type: job?.type || "",
       salary: job?.salary || "",
       deadline: job?.deadline || "",
-    }));
+    });
   }, [job]);
 
   const handleChange = (e) => {
-    setData((prev) => ({
-      ...prev,
+    setData({
+      ...data,
       [e.target.name]: e.target.value,
-    }));
+    });
   };
 
   const handleSubmit = (e) => {
