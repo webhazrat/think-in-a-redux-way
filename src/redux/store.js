@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import transactionReducer from "./features/transaction/transactionSlice";
+import jobsReducer from "./features/jobs/jobsSlice";
+import filtersReducer from "./features/filters/filtersSlice";
 
 const store = configureStore({
+  devTools: true,
   reducer: {
-    transactions: transactionReducer,
+    jobs: jobsReducer,
+    filters: filtersReducer,
   },
 });
 

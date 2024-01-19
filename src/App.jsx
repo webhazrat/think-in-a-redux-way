@@ -1,23 +1,18 @@
 import "./App.css";
-import CalculateTransaction from "./components/CalculateTransaction";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import TransactionForm from "./components/TransactionForm";
-import Transactions from "./components/Transactions";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import AddNewJob from "./pages/AddNewJob";
+import EditJob from "./pages/EditJob";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <div className="main">
-        <div className="container">
-          <CalculateTransaction />
-          <TransactionForm />
-          <Transactions />
-        </div>
-      </div>
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/add-job" element={<AddNewJob />} />
+        <Route path="/edit-job/:id" element={<EditJob />} />
+      </Routes>
+    </Router>
   );
 }
 
