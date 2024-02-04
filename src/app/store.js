@@ -1,19 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import videosReducer from "../slices/videos/videosSlice";
-import tagsReducer from "../slices/tags/tagsSlice";
-import videoReducer from "../slices/video/videoSlice";
-import relatedVideosReducer from "../slices/relatedVideos/relatedVideosSlice";
-import filtersReducer from "../slices/filters/filtersSlice";
+import { videosApi } from "../features/api/apiSlice";
 
 const store = configureStore({
-  devTools: true,
   reducer: {
-    videos: videosReducer,
-    tags: tagsReducer,
-    video: videoReducer,
-    relatedVideos: relatedVideosReducer,
-    filters: filtersReducer,
+    [videosApi.reducerPath]: videosApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(videosApi.middleware),
 });
 
 export default store;

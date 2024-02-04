@@ -4,7 +4,7 @@ export default function RelatedVideo({ video }) {
   return (
     <div className="w-full flex flex-row gap-2 mb-4">
       <div className="relative w-[168px] h-[94px] flex-none duration-300 hover:scale-[1.03]">
-        <Link to={`/video/${video.id}`}>
+        <Link to={`/videos/${video.id}`}>
           <img
             src={video.thumbnail}
             className="object-cover"
@@ -17,7 +17,7 @@ export default function RelatedVideo({ video }) {
       </div>
 
       <div className="flex flex-col w-full">
-        <Link to={`/video/${video.id}`}>
+        <Link to={`/videos/${video.id}`}>
           <p className="text-slate-900 text-sm font-semibold">{video.title}</p>
         </Link>
         <a className="text-gray-400 text-xs mt-2 hover:text-gray-600" href="#">

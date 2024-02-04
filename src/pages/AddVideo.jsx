@@ -1,12 +1,12 @@
 import Footer from "../components/Footer";
 import HeaderNavigation from "../components/HeaderNavigation";
-import SingleVideo from "../components/SingleVideo";
+import VideoForm from "../components/VideoForm";
 
-export default function Video() {
+export default function AddVideo() {
   return (
     <>
       <HeaderNavigation />
-      <SingleVideo />
+      <VideoForm />
       <Footer />
     </>
   );

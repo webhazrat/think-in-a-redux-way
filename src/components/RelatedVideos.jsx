@@ -1,26 +1,45 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useGetRelatedVideosQuery } from "../features/api/apiSlice";
 import RelatedVideo from "./RelatedVideo";
-import { useEffect } from "react";
-import { fetchRelatedVideos } from "../slices/relatedVideos/relatedVideosSlice";
+import Error from "./ui/Error";
+import RelatedVideoLoader from "./ui/RelatedVideoLoader";
 
-export default function RelatedVideos({ currentId, tags }) {
-  console.log({ currentId, tags });
-  const dispatch = useDispatch();
-  const { videos, isLoading, isError } = useSelector(
-    (state) => state.relatedVideos
-  );
+export default function RelatedVideos({ id, title }) {
+  const {
+    data: relatedVideos,
+    isLoading,
+    isError,
+  } = useGetRelatedVideosQuery({ id, title });
 
-  useEffect(() => {
-    dispatch(fetchRelatedVideos({ videoId: currentId, tags }));
-  }, [dispatch, currentId, tags]);
+  let content = null;
 
-  console.log({ videos, isLoading, isError });
+  if (isLoading) {
+    content = (
+      <>
+        <RelatedVideoLoader />
+        <RelatedVideoLoader />
+        <RelatedVideoLoader />
+        <RelatedVideoLoader />
+      </>
+    );
+  }
+
+  if (!isLoading && isError) {
+    content = <Error message="There was an error!" />;
+  }
+
+  if (!isLoading && !isError && relatedVideos?.length === 0) {
+    content = <Error message="No related videos found!" />;
+  }
+
+  if (!isLoading && !isError && relatedVideos?.length > 0) {
+    content = relatedVideos.map((video) => (
+      <RelatedVideo key={video.id} video={video} />
+    ));
+  }
+
   return (
     <div className="col-span-full lg:col-auto max-h-[570px] overflow-y-auto">
-      {!isLoading &&
-        !isError &&
-        videos.length > 0 &&
-        videos.map((video) => <RelatedVideo key={video.id} video={video} />)}
+      {content}
     </div>
   );
 }

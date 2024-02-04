@@ -1,19 +1,19 @@
 import "./App.css";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import AddVideo from "./pages/AddVideo";
 import Video from "./pages/Video";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import EditVideo from "./pages/EditVideo";
 
 function App() {
   return (
     <Router>
-      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/video/:videoId" element={<Video />} />
+        <Route path="/videos/add" element={<AddVideo />} />
+        <Route path="/videos/:videoId" element={<Video />} />
+        <Route path="/videos/edit/:videoId" element={<EditVideo />} />
       </Routes>
-      <Footer />
     </Router>
   );
 }
