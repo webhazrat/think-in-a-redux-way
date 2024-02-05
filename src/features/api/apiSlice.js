@@ -1,67 +1,53 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const videosApi = createApi({
-  reducerPath: "videosApi",
+export const booksApi = createApi({
+  reducerPath: "booksApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:9000",
   }),
-  tagTypes: ["Videos", "Video", "RelatedVideos"],
+  tagTypes: ["Books"],
   endpoints: (builder) => ({
-    getVideos: builder.query({
-      query: () => "/videos",
-      keepUnusedDataFor: 600,
-      providesTags: ["Videos"],
+    getBooks: builder.query({
+      query: () => "/books",
+      providesTags: ["Books"],
     }),
-    getVideo: builder.query({
-      query: (videoId) => `/videos/${videoId}`,
+    getBook: builder.query({
+      query: (bookId) => `/books/${bookId}`,
       providesTags: (result, error, arg) => [{ type: "Video", id: arg }],
     }),
-    getRelatedVideos: builder.query({
-      query: ({ id, title }) => {
-        const tags = title.split(" ");
-        const likes = tags.map((tag) => `title_like=${tag}`);
-        const queryString = `?${likes.join("&")}&id_ne=${id}&_limit=4`;
-        return `/videos${queryString}`;
-      },
-      providesTags: (result, error, arg) => [
-        { type: "RelatedVideos", id: arg.id },
-      ],
-    }),
-    addVideo: builder.mutation({
+    addBook: builder.mutation({
       query: (data) => ({
-        url: "/videos",
+        url: "/books",
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["Videos"],
+      invalidatesTags: ["Books"],
     }),
-    editVideo: builder.mutation({
+    updateBook: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/videos/${id}`,
+        url: `/books/${id}`,
         method: "PATCH",
         body: data,
       }),
       invalidatesTags: (result, error, arg) => [
-        "Videos",
-        { type: "Video", id: arg.id },
-        { type: "RelatedVideos", id: arg.id },
+        "Books",
+        { type: "Book", id: arg.id },
       ],
     }),
-    deleteVideo: builder.mutation({
-      query: (videoId) => ({
-        url: `/videos/${videoId}`,
+    deleteBook: builder.mutation({
+      query: (bookId) => ({
+        url: `/books/${bookId}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Videos"],
+      invalidatesTags: ["Books"],
     }),
   }),
 });
 
 export const {
-  useGetVideosQuery,
-  useGetVideoQuery,
-  useGetRelatedVideosQuery,
-  useAddVideoMutation,
-  useEditVideoMutation,
-  useDeleteVideoMutation,
-} = videosApi;
+  useGetBooksQuery,
+  useGetBookQuery,
+  useAddBookMutation,
+  useUpdateBookMutation,
+  useDeleteBookMutation,
+} = booksApi;

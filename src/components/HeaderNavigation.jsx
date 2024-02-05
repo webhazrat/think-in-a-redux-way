@@ -1,18 +1,62 @@
-import Logo from "../assets/lws.svg";
 import { Link } from "react-router-dom";
+import Logo from "../assets/lws.svg";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { searchFilter } from "../features/filter/filterSlice";
+
 export default function HeaderNavigation() {
+  const [keyword, setKeyword] = useState("");
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(searchFilter(keyword));
+  };
+
   return (
-    <nav className="bg-slate-100 shadow-md">
-      <div className="max-w-7xl mx-auto px-5 lg:px-0 flex justify-between py-3 items-center">
+    <nav className="py-4 2xl:px-6">
+      <div className="container flex items-center justify-between">
         <Link to="/">
-          <img className="h-10" src={Logo} alt="Learn with Sumit" />
+          <img src={Logo} width="150px" className="object-contain" />
         </Link>
-        <Link
-          to="/videos/add"
-          className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-indigo-500"
-        >
-          + Add Video
-        </Link>
+
+        <ul className="hidden md:flex items-center space-x-6">
+          <Link
+            to="/"
+            className="font-semibold cursor-pointer"
+            id="lws-bookStore"
+          >
+            <li>Book Store</li>
+          </Link>
+          <Link to="/books/add" className="cursor-pointer" id="lws-addBook">
+            <li>Add Book</li>
+          </Link>
+        </ul>
+
+        <form className="flex items-center" onSubmit={handleSubmit}>
+          <div className="group relative rounded-md bg-white">
+            <svg
+              width="20"
+              height="20"
+              fill="currentColor"
+              className="absolute left-3 top-1/2 -mt-2.5 text-slate-400 pointer-events-none group-focus-within:text-primary"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+              ></path>
+            </svg>
+            <input
+              type="text"
+              placeholder="Filter books..."
+              className="search"
+              id="lws-search"
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
+            />
+          </div>
+        </form>
       </div>
     </nav>
   );

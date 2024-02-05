@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { videosApi } from "../features/api/apiSlice";
+import { booksApi } from "../features/api/apiSlice";
+import filterReducer from "../features/filter/filterSlice";
 
 const store = configureStore({
   reducer: {
-    [videosApi.reducerPath]: videosApi.reducer,
+    [booksApi.reducerPath]: booksApi.reducer,
+    filter: filterReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(videosApi.middleware),
+    getDefaultMiddleware().concat(booksApi.middleware),
 });
 
 export default store;

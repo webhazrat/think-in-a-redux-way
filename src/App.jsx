@@ -1,18 +1,16 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Add from "./pages/Add";
 import Home from "./pages/Home";
-import AddVideo from "./pages/AddVideo";
-import Video from "./pages/Video";
-import EditVideo from "./pages/EditVideo";
+import Edit from "./pages/Edit";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/videos/add" element={<AddVideo />} />
-        <Route path="/videos/:videoId" element={<Video />} />
-        <Route path="/videos/edit/:videoId" element={<EditVideo />} />
+        <Route path="/books/add" element={<Add />} />
+        <Route path="/books/edit/:bookId" element={<Edit />} />
       </Routes>
     </Router>
   );
